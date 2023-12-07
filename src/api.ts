@@ -1,17 +1,23 @@
-export const API_URL = "http://localhost:5001/api/v1";
+import {type ApiResponse as IApiResponse} from "~/interfaces/response";
 
-export async function getData(endpoint: string) {
-  const url = `${API_URL}/${endpoint}`;
-  const res = await fetch(url);
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
+export const API_URL = "http://localhost:5000/api/v1";
 
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
+export async function getData<TData>(endpoint: string, method: "GET" | "POST" = "GET"): Promise<TData> {
+  const res = await fetch(`${API_URL}/${endpoint}`, {
+    method,
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+
+
+  const data = await res.json() as IApiResponse<TData>;
+
+  if (data.statusCode !== 200) {
+    throw new Error(data.error);
   }
 
-  return res.json();
+  return data.data as TData;
 }
 
 // endpoints

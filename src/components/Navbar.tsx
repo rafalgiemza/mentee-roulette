@@ -31,6 +31,9 @@ export const Navbar = () => {
               <Link href={"/settings"}>Settings</Link>
             </li>
             <li>
+              <Link href={"/user-list"}>User List</Link>
+            </li>
+            <li>
               <Link href={"/logout"}>Logout</Link>
             </li>
           </ul>
