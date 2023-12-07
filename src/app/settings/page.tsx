@@ -1,35 +1,28 @@
 import React from "react";
+import { endpoints, getData } from "~/api";
 
-const company = {
-  name: "SoftGarden",
-};
+export default async function page() {
+  const { data: currentUser } = await getData(endpoints.usersMe);
 
-const user = {
-  firstName: "Rafał",
-  lastName: "Giemza",
-  avatar:
-    "https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg",
-  company: company,
-  department: "Developer",
-  timeZone: "Europe/Berlin",
-};
-
-export default function page() {
   return (
     <main className="gap-100 flex min-h-screen flex-col items-center">
       <div className="py-10">
         <h1 className="card-title">Settings</h1>
       </div>
       <div className="card card-side bg-base-100 shadow-xl">
-        <figure>
-          <img src={user.avatar} alt="Avatar" />
-        </figure>
-        <div className="card-body">
-          <p>Company name: {user.company.name}</p>
-          <p>First name: {user.firstName} </p>
-          <p>Last name: {user.lastName} </p>
-          <p>Department: {user.department} </p>
-          <p>Time zone: {user.timeZone} </p>
+        <div className="avatar py-10 pl-10">
+          <div className="w-72 rounded-md ">
+            <figure>
+              <img src={currentUser?.avatarImageUrl} alt="Avatar" />
+            </figure>
+          </div>
+        </div>
+        <div className="card-body py-10">
+          <p>Company name: {currentUser?.company?.name}</p>
+          <p>First name: {currentUser?.firstName} </p>
+          <p>Last name: {currentUser?.lastName} </p>
+          <p>Department: {currentUser?.department} </p>
+          <p>Time zone: {currentUser?.timeZone} </p>
         </div>
       </div>
       <div className="py-10">
