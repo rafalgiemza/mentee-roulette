@@ -29,7 +29,7 @@ export const UnregisterMe: React.FC<UnregisterMeProps> = ({
   return (
     <div className="grid grid-cols-1 px-5 py-5">
       <h2 className="card-title justify-center py-5">
-        You are {connectedWithCronofy ? "Registered!" : "Not regitered???!!!"}
+        You are {connectedWithCronofy ? "Registered!" : "Not registered???!!!"}
       </h2>
       <label className="swap swap-flip text-9xl">
         <input

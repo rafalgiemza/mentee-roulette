@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { RouletteTriggerResponse } from "~/interfaces/roulette";
 import { RouletteResultsCard } from "./RouletteResultsCard";
@@ -8,11 +10,6 @@ interface RouletteResultsProps {
 }
 
 export const RouletteResults = ({ results }: RouletteResultsProps) => {
-  console.log(
-    "🚀 ~ file: RouletteResults.tsx:11 ~ RouletteResults ~ results:",
-    results,
-  );
-
   return (
     <>
       <div className="flex w-full flex-col py-20 lg:flex-row">

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-
+import { redirect } from "next/navigation";
 export interface RouletteTriggerProps {
   rouletteTriggerClicked: () => Promise<void>;
 }

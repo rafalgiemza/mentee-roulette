@@ -51,7 +51,7 @@ const fakeRes: RouletteTriggerResponse = {
   ],
 };
 
-export const Roulette = (fake = false) => {
+export const Roulette = ({ fake = false }) => {
   const [results, setResults] = useState<RouletteTriggerResponse | null>(
     fake ? fakeRes : null,
   );
@@ -61,14 +61,14 @@ export const Roulette = (fake = false) => {
       endpoints.rouletteTrigger,
       "POST",
     );
-
-    console.log("🚀 ~ file: page.tsx:20 ~ handleClick ~ res:", res);
+    window.location.href = "http://localhost:3000/results";
     setResults(res);
+    console.log("🚀 ~ file: Roulette.tsx:67 ~ handleClick ~ res:", res);
   };
 
   return (
     <div>
-      <RouletteTrigger rouletteTriggerClicked={handleClick} />
+      {!fake && <RouletteTrigger rouletteTriggerClicked={handleClick} />}
       {results && <RouletteResults results={results} />}
     </div>
   );

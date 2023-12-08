@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { endpoints, getData } from "~/api";
 import { type UserResponse as IUserResponse } from "~/interfaces/users";
@@ -23,7 +25,7 @@ const page: React.FC = async () => {
           <Paused />
         </Link>
       )}
-      {!notRegisteredYet && !isPaused && <Roulette />}
+      {!notRegisteredYet && !isPaused && <Roulette fake={false} />}
     </main>
   );
 };
