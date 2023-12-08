@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { useUnregisterMeContext } from "~/providers/UnregisterMeProvider";
 import { endpoints, getData } from "~/api";

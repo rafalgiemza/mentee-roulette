@@ -23,7 +23,7 @@ const page: React.FC = async () => {
           <Paused />
         </Link>
       )}
-      {!notRegisteredYet && !isPaused && <Roulette />}
+      {!notRegisteredYet && !isPaused && <Roulette fake={true} />}
     </main>
   );
 };
