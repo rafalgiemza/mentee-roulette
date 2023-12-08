@@ -1,19 +1,21 @@
 import {type ApiResponse as IApiResponse} from "~/interfaces/response";
+import axios from "axios";
 
 export const API_URL = "http://localhost:5000/api/v1";
 
-export async function getData<TData>(endpoint: string, method: "GET" | "POST" = "GET"): Promise<TData> {
-  const res = await fetch(`${API_URL}/${endpoint}`, {
-    method,
-    headers: {
-      "Content-Type": "application/json"
-    }
-  });
+export async function getData<TData>(endpoint: string, method: "GET" | "POST" | "PUT" = "GET"): Promise<TData> {
+  const { data } = await axios.request<IApiResponse<TData>>(
+      {
+        url: `${API_URL}/${endpoint}`,
+        method,
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control": "no-store, max-age=0"
+        },
+      },
+  );
 
-
-  const data = await res.json() as IApiResponse<TData>;
-
-  if (data.statusCode !== 200) {
+  if (data?.statusCode !== 200) {
     throw new Error(data.error);
   }
 
@@ -24,4 +26,8 @@ export async function getData<TData>(endpoint: string, method: "GET" | "POST" = 
 export const endpoints = {
   users: "users",
   usersMe: "users/me",
+  usersUnpauseMe: "users/unpause-me",
+  usersPauseMe: "users/pause-me",
+  usersDisconnectFromCronofy: "users/disconnect-from-cronofy",
+  rouletteTrigger: "roulette/trigger",
 };

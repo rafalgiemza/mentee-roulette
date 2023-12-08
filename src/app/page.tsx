@@ -1,9 +1,14 @@
-import React from "react";
+"use client"
 
-export default function page() {
+import React from "react";
+import {RouletteTrigger} from "~/components/RouletteTrigger";
+
+const page: React.FC = () => {
   return (
     <main className="flex min-h-screen flex-col items-center">
-      <div className="py-10">Main page</div>
+        <RouletteTrigger />
     </main>
   );
 }
+
+export default page;
