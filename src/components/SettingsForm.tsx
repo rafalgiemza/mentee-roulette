@@ -7,6 +7,7 @@ import { UnregisterMe } from "~/components/UnregisterMe";
 import { PauseMeProvider } from "~/providers/PauseMeProvider";
 import { UnregisterMeProvider } from "~/providers/UnregisterMeProvider";
 import { API_HOST } from "~/api";
+import { Avatar } from "./Avatar";
 
 const CRONOFY_DATA_CENTER = "de";
 const CRONOFY_CLIENT_ID = "RIHglSgE2QwvqHnbyqM8qnsAnZ24W0aK";
@@ -41,26 +42,28 @@ export const SettingsForm = async () => {
   }, []);
 
   return (
-    <main className="gap-100 flex min-h-screen flex-col items-center">
+    <main className="flex min-h-screen flex-col items-center">
       <div className="py-10">
         <h1 className="card-title">Settings</h1>
       </div>
-      <div className="card card-side bg-base-100 shadow-xl">
-        <div className="avatar py-10 pl-10">
-          <div className="w-72 rounded-md ">
-            <figure>
-              <img src={user?.avatarImageUrl} alt="Avatar" />
-            </figure>
+      {user && (
+        <div className="card card-side bg-base-100 shadow-xl">
+          <div className="avatar py-10 pl-10">
+            <div className="w-72 rounded-md ">
+              <div className="mask mask-squircle h-auto w-auto">
+                <Avatar avatarId={user.id} />
+              </div>
+            </div>
+          </div>
+          <div className="card-body py-10">
+            <p>Company name: {user?.company?.name}</p>
+            <p>First name: {user?.firstName} </p>
+            <p>Last name: {user?.lastName} </p>
+            <p>Department: {user?.department} </p>
+            <p>Time zone: {user?.timeZone} </p>
           </div>
         </div>
-        <div className="card-body py-10">
-          <p>Company name: {user?.company?.name}</p>
-          <p>First name: {user?.firstName} </p>
-          <p>Last name: {user?.lastName} </p>
-          <p>Department: {user?.department} </p>
-          <p>Time zone: {user?.timeZone} </p>
-        </div>
-      </div>
+      )}
       <div className="py-10">
         <button className="btn " disabled>
           Edit
