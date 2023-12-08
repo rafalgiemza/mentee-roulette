@@ -7,7 +7,7 @@ import { UnregisterMe } from "~/components/UnregisterMe";
 import { PauseMeProvider } from "~/providers/PauseMeProvider";
 import { UnregisterMeProvider } from "~/providers/UnregisterMeProvider";
 import { API_HOST } from "~/api";
-import { Avatar } from "./Avatar";
+import { SimpleCard } from "./SimpleCard";
 
 const CRONOFY_DATA_CENTER = "de";
 const CRONOFY_CLIENT_ID = "RIHglSgE2QwvqHnbyqM8qnsAnZ24W0aK";
@@ -46,38 +46,19 @@ export const SettingsForm = async () => {
       <div className="py-10">
         <h1 className="card-title">Settings</h1>
       </div>
-      {user && (
-        <div className="card card-side bg-base-100 shadow-xl">
-          <div className="avatar py-10 pl-10">
-            <div className="w-72 rounded-md ">
-              <div className="mask mask-squircle h-auto w-auto">
-                <Avatar avatarId={user.id} />
-              </div>
-            </div>
-          </div>
-          <div className="card-body py-10">
-            <p>Company name: {user?.company?.name}</p>
-            <p>First name: {user?.firstName} </p>
-            <p>Last name: {user?.lastName} </p>
-            <p>Department: {user?.department} </p>
-            <p>Time zone: {user?.timeZone} </p>
-          </div>
+      <div className="grid grid-cols-2 gap-10">
+        <PauseMeProvider pauseMe={user?.pauseMe}>
+          <PauseMe pauseMe={user?.pauseMe} />
+        </PauseMeProvider>
+        <UnregisterMeProvider connectedWithCronofy={user?.connectedWithCronofy}>
+          <UnregisterMe connectedWithCronofy={user?.connectedWithCronofy} />
+        </UnregisterMeProvider>
+      </div>
+      <SimpleCard>
+        <div className="element__wrapper">
+          <div id="cronofy-calendar-sync"></div>
         </div>
-      )}
-      <div className="py-10">
-        <button className="btn " disabled>
-          Edit
-        </button>
-      </div>
-      <div className="element__wrapper">
-        <div id="cronofy-calendar-sync"></div>
-      </div>
-      <PauseMeProvider pauseMe={user?.pauseMe}>
-        <PauseMe pauseMe={user?.pauseMe} />
-      </PauseMeProvider>
-      <UnregisterMeProvider connectedWithCronofy={user?.connectedWithCronofy}>
-        <UnregisterMe connectedWithCronofy={user?.connectedWithCronofy} />
-      </UnregisterMeProvider>
+      </SimpleCard>
     </main>
   );
 };

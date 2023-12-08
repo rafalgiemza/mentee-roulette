@@ -34,6 +34,9 @@ export const Navbar = async () => {
             tabIndex={0}
             className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
           >
+            <li key={0}>
+              <Link href={"/profile"}>Profile</Link>
+            </li>
             <li key={1}>
               <Link href={"/settings"}>Settings</Link>
             </li>
