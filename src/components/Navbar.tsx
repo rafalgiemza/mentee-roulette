@@ -1,49 +1,48 @@
-"use client"
-
 import Link from "next/link";
 import React from "react";
-import { useCurrentUserContext } from "~/providers/CurrentUserProvider";
+import { Avatar } from "./Avatar";
+import { endpoints, getData } from "~/api";
+import { type UserResponse as IUserResponse } from "~/interfaces/users";
 
 export const Navbar = async () => {
-  const { user } = useCurrentUserContext()
+  const user = await getData<IUserResponse>(endpoints.usersMe);
 
   return (
-      <div className="navbar ">
-        <div className="flex-1">
-          <Link href={"/"} className="btn btn-ghost text-xl">
-            Mentee Roulette
-          </Link>
-        </div>
-        <div className="flex-none gap-2">
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="w-10 rounded-full">
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  src={user?.avatarImageUrl || "/public/user-avatar.png"}
-                />
-              </div>
+    <div className="navbar ">
+      <div className="flex-1">
+        <Link href={"/"} className="btn btn-ghost text-xl">
+          Mentee Roulette
+        </Link>
+      </div>
+      <div className="navbar-end">
+        <Link href={"/user-list"} className="btn btn-ghost text-base">
+          Users List
+        </Link>
+      </div>
+      <div className="flex-none gap-2">
+        <div className="dropdown dropdown-end">
+          <div
+            tabIndex={0}
+            role="button"
+            className="avatar btn btn-circle btn-ghost"
+          >
+            <div className="mask mask-squircle h-12 w-12">
+              <Avatar avatarId={user.id} />
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <Link href={"/settings"}>Settings</Link>
-              </li>
-              <li>
-                <Link href={"/user-list"}>User List</Link>
-              </li>
-              <li>
-                <Link href={"/logout"}>Logout</Link>
-              </li>
-            </ul>
           </div>
+          <ul
+            tabIndex={0}
+            className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
+          >
+            <li key={1}>
+              <Link href={"/settings"}>Settings</Link>
+            </li>
+            <li key={2}>
+              <Link href={"/logout"}>Logout</Link>
+            </li>
+          </ul>
         </div>
       </div>
+    </div>
   );
 };
