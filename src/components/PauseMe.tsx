@@ -25,7 +25,7 @@ export const PauseMe: React.FC<PauseMeProps> = ({ pauseMe: initData }) => {
   return (
     <div className="grid grid-cols-1 px-5 py-5 ">
       <h2 className="card-title justify-center py-5">
-        You are {pauseMe ? "Active!" : "Paused..."}
+        You are {!pauseMe ? "Active!" : "Paused..."}
       </h2>
       <label className="swap swap-flip text-9xl">
         <input
@@ -33,11 +33,11 @@ export const PauseMe: React.FC<PauseMeProps> = ({ pauseMe: initData }) => {
           checked={!pauseMe}
           onClick={() => handleClick(!pauseMe)}
         />
-        <div className="swap-on">😴</div>
-        <div className="swap-off">😁</div>
+        <div className="swap-on">😁</div>
+        <div className="swap-off">😴</div>
       </label>
       <h2 className="card-title justify-center py-5">
-        Click to {pauseMe ? "Pause Me" : "Activate Me"}
+        Click to {!pauseMe ? "Pause Me" : "Activate Me"}
       </h2>
     </div>
   );
