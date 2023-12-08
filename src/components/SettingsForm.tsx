@@ -12,7 +12,7 @@ import { SimpleCard } from "./SimpleCard";
 const CRONOFY_DATA_CENTER = "de";
 const CRONOFY_CLIENT_ID = "RIHglSgE2QwvqHnbyqM8qnsAnZ24W0aK";
 
-export const SettingsForm = async () => {
+export const SettingsForm = () => {
   const { user } = useCurrentUserContext();
 
   useEffect(() => {

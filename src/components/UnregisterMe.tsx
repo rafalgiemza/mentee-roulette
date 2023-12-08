@@ -32,7 +32,7 @@ export const UnregisterMe: React.FC<UnregisterMeProps> = ({
       <label className="swap swap-flip text-9xl">
         <input
           type="checkbox"
-          checked={!connectedWithCronofy}
+          defaultChecked={!connectedWithCronofy}
           onClick={() => handleClick()}
         />
 
@@ -40,7 +40,7 @@ export const UnregisterMe: React.FC<UnregisterMeProps> = ({
         <div className="swap-off">🤩</div>
       </label>
       <h2 className="card-title justify-center py-5">
-        {connectedWithCronofy ? "Click to Unregister Me" : "Register ASAP!"}
+        {connectedWithCronofy ? "Click to Unregister Me" : "Register ASAP!!!"}
       </h2>
     </div>
   );

@@ -30,7 +30,7 @@ export const PauseMe: React.FC<PauseMeProps> = ({ pauseMe: initData }) => {
       <label className="swap swap-flip text-9xl">
         <input
           type="checkbox"
-          checked={!pauseMe}
+          defaultChecked={!pauseMe}
           onClick={() => handleClick(!pauseMe)}
         />
         <div className="swap-on">😁</div>
